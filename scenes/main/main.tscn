@@ -9,10 +9,6 @@ distance = -360.0
 
 [node name="Node2D" type="Node2D"]
 
-[node name="background" type="Sprite2D" parent="."]
-position = Vector2(320, 180)
-texture = ExtResource("1_hyk8p")
-
 [node name="pip" parent="." instance=ExtResource("2_iuonh")]
 position = Vector2(192, 120)
 
@@ -26,3 +22,12 @@ position = Vector2(0, 180)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("3_k2fmo")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(640, 0)
+
+[node name="background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(320, 180)
+texture = ExtResource("1_hyk8p")
