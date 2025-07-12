@@ -1,27 +1,49 @@
-[gd_scene load_steps=7 format=3 uid="uid://fhtk761f0nig"]
+[gd_scene load_steps=12 format=3 uid="uid://fhtk761f0nig"]
 
 [ext_resource type="Script" uid="uid://cmvn2gsv3px1c" path="res://entities/player/pip.gd" id="1_v4s67"]
 [ext_resource type="Texture2D" uid="uid://idaap3ngwdxc" path="res://assets/pip.png" id="2_3u65c"]
+[ext_resource type="Script" uid="uid://bqe1l6tyhky1b" path="res://lib/state_machine.gd" id="3_tfbgp"]
+[ext_resource type="Script" uid="uid://cisds3p075m7x" path="res://entities/player/idle.gd" id="4_axdly"]
+[ext_resource type="Script" uid="uid://cutdhkb2u65vu" path="res://entities/player/walk.gd" id="5_axdly"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8lhpu"]
-atlas = ExtResource("2_3u65c")
-region = Rect2(0, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tfbgp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_axdly"]
 atlas = ExtResource("2_3u65c")
 region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulu8d"]
+atlas = ExtResource("2_3u65c")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rdnu"]
+atlas = ExtResource("2_3u65c")
+region = Rect2(40, 80, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c25up"]
+atlas = ExtResource("2_3u65c")
+region = Rect2(80, 80, 40, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_axdly"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8lhpu")
+"texture": SubResource("AtlasTexture_axdly")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tfbgp")
+"texture": SubResource("AtlasTexture_ulu8d")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rdnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c25up")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -34,10 +56,21 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_axdly")
-autoplay = "default"
-frame = 1
-frame_progress = 0.255194
+animation = &"walk"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_ulu8d")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_tfbgp")
+metadata/_custom_type_script = "uid://bqe1l6tyhky1b"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_axdly")
+metadata/_custom_type_script = "uid://cbwhfxqukfn8a"
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("5_axdly")
+metadata/_custom_type_script = "uid://cbwhfxqukfn8a"

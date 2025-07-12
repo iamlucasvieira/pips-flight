@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cueh2fgtv8o3q"]
+[gd_scene load_steps=5 format=3 uid="uid://cueh2fgtv8o3q"]
 
 [ext_resource type="Texture2D" uid="uid://kojfjcgdopf2" path="res://assets/background.png" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://fhtk761f0nig" path="res://entities/player/pip.tscn" id="2_iuonh"]
+[ext_resource type="Script" uid="uid://dwjrkpu2nhxxq" path="res://scenes/main/camera_2d.gd" id="3_k2fmo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iuonh"]
+distance = -360.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -11,3 +15,14 @@ texture = ExtResource("1_hyk8p")
 
 [node name="pip" parent="." instance=ExtResource("2_iuonh")]
 position = Vector2(192, 120)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_iuonh")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 180)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("3_k2fmo")

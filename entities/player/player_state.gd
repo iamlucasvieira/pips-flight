@@ -1,7 +1,7 @@
 class_name PlayerState extends State
 
 const IDLE = "Idle"
-const RUNNING = "Running"
+const WALK = "Walk"
 const JUMP = "Jump"
 const FALL = "Fall"
 
