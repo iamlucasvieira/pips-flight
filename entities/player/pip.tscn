@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fhtk761f0nig"]
+
+[ext_resource type="Script" uid="uid://cmvn2gsv3px1c" path="res://entities/player/pip.gd" id="1_v4s67"]
+
+[node name="pip" type="CharacterBody2D"]
+script = ExtResource("1_v4s67")
