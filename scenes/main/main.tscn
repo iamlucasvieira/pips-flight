@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://cueh2fgtv8o3q"]
+[gd_scene load_steps=3 format=3 uid="uid://cueh2fgtv8o3q"]
+
+[ext_resource type="Texture2D" uid="uid://kojfjcgdopf2" path="res://assets/background.png" id="1_hyk8p"]
+[ext_resource type="PackedScene" uid="uid://fhtk761f0nig" path="res://entities/player/pip.tscn" id="2_iuonh"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("1_hyk8p")
+
+[node name="pip" parent="." instance=ExtResource("2_iuonh")]
+position = Vector2(192, 120)
