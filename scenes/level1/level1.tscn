@@ -1,38 +1,16 @@
-[gd_scene load_steps=9 format=4 uid="uid://cueh2fgtv8o3q"]
+[gd_scene load_steps=7 format=4 uid="uid://cueh2fgtv8o3q"]
 
 [ext_resource type="Script" uid="uid://b4ovtkylpmo4x" path="res://scenes/level1/level1.gd" id="1_wqsjc"]
 [ext_resource type="PackedScene" uid="uid://blmfrhhxlo1mv" path="res://scenes/camera/camera.tscn" id="2_wqsjc"]
-[ext_resource type="Texture2D" uid="uid://dtv3n424f23pw" path="res://assets/tree1.png" id="3_kcfjd"]
+[ext_resource type="PackedScene" uid="uid://0prxr3pd378b" path="res://scenes/background/parallax_background.tscn" id="4_68lc7"]
 [ext_resource type="PackedScene" uid="uid://fhtk761f0nig" path="res://entities/player/pip.tscn" id="4_dpu10"]
-[ext_resource type="Texture2D" uid="uid://kojfjcgdopf2" path="res://assets/background.png" id="5_q6uuj"]
 [ext_resource type="TileSet" uid="uid://dygaehrvm5mi5" path="res://assets/main.tres" id="6_wmcwa"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iuonh"]
 distance = -360.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q06x"]
-size = Vector2(42, 2)
-
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_wqsjc")
-
-[node name="Ground" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(0, 200)
-shape = SubResource("WorldBoundaryShape2D_iuonh")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2(1288, 310)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
-texture = ExtResource("3_kcfjd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(0, -18)
-shape = SubResource("RectangleShape2D_6q06x")
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("pip") instance=ExtResource("2_wqsjc")]
 pip = NodePath("../pip")
@@ -40,16 +18,17 @@ pip = NodePath("../pip")
 [node name="pip" parent="." instance=ExtResource("4_dpu10")]
 position = Vector2(297, 298)
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(640, 0)
-
-[node name="background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(320, 180)
-texture = ExtResource("5_q6uuj")
+[node name="ParallaxBackground" parent="." instance=ExtResource("4_68lc7")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, 8)
 tile_map_data = PackedByteArray("AAASABUAAAAAAAEAAAASABQAAAAAAAEAAAATABUAAAABAAEAAAAVABUAAAAAAAEAAAAfABUAAAABAAEAAAAUABUAAAACAAEAAAAVABQAAAACAAEAAAAdABQAAAACAAEAAAAZABUAAAACAAEAAAAbABUAAAACAAEAAAAXABQAAAACAAEAAAAfABQAAAAAAAEAAAAdABUAAAACAAEAAAAWABUAAAABAAEAAAAcABUAAAABAAEAAAAaABUAAAAAAAEAAAAaABQAAAAAAAEAAAAXABUAAAACAAEAAAASABMAAAAAAAAAAAATABQAAAABAAAAAAAUABQAAAAAAAAAAAAVABMAAAACAAAAAAAWABQAAAABAAAAAAAaABMAAAAAAAAAAAAcABQAAAAAAAAAAAAbABQAAAACAAAAAAAdABMAAAABAAAAAAAeABMAAAACAAAAAAAfABMAAAAAAAAAAAAeABQAAAACAAEAAAAeABUAAAAAAAEAAAAZABQAAAABAAAAAAAYABQAAAACAAAAAAAYABUAAAACAAEAAAAWABMAAAAAAAAAAAAXABMAAAACAAAAAAATABMAAAACAAAAAAAUABMAAAAAAAAAAAAYABMAAAAAAAAAAAAbABMAAAACAAAAAAAZABMAAAACAAAAAAAcABMAAAABAAAAAAAjABMAAAAAAAAAAAAjABQAAAAAAAEAAAAkABMAAAABAAAAAAAkABQAAAABAAEAAAAlABMAAAACAAAAAAAlABQAAAACAAEAAAAqABMAAAAAAAAAAAAqABQAAAAAAAEAAAArABMAAAABAAAAAAArABQAAAABAAEAAAAsABMAAAACAAAAAAAsABQAAAACAAEAAAAxABMAAAAAAAAAAAAxABQAAAAAAAEAAAAyABMAAAABAAAAAAAyABQAAAABAAEAAAAzABMAAAACAAAAAAAzABQAAAACAAEAAAAjABUAAAAAAAEAAAArABUAAAAAAAEAAAAzABUAAAAAAAEAAAAxABUAAAACAAEAAAAsABUAAAACAAEAAAAkABUAAAACAAEAAAAlABUAAAAAAAEAAAAqABUAAAAAAAEAAAAyABUAAAAAAAEAAAA=")
 tile_set = ExtResource("6_wmcwa")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 200)
+shape = SubResource("WorldBoundaryShape2D_iuonh")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
