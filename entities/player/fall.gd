@@ -9,7 +9,7 @@ func handle_input(event: InputEvent) -> void:
 	
 func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
-	if direction:
+	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
 		player.point_sprite()
 		player.velocity.x = direction * player.SPEED_X
 	
@@ -20,6 +20,8 @@ func physics_update(delta: float) -> void:
 		player.velocity.y = player.glide_speed_y
 	else:
 		player.apply_gravity(delta)
+		
+	player.velocity.x = move_toward(player.velocity.x, 0, player.AIR_RESISTNACE_X * delta)
 	player.move_and_slide()
 
 func enter(_previous_state_path: String, _data := {}) -> void:

@@ -1,8 +1,9 @@
 class_name Player extends  CharacterBody2D
 
-const SPEED_X = 300.0
-const GLIDE_SPEED_X = 200.0
-const JUMP_VELOCITY = -400.0
+const SPEED_X: float = 300.0
+const GLIDE_SPEED_X: float = 200.0
+const AIR_RESISTNACE_X: float = 150.0
+const JUMP_VELOCITY: float = -400.0
 
 @export var jumps_available: int = 2
 @export var glide_speed_y: float = 10.0
