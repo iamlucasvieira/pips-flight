@@ -5,7 +5,7 @@ const GLIDE_SPEED_X = 200.0
 const JUMP_VELOCITY = -400.0
 
 @export var jumps_available: int = 2
-@export_range(0, 1) var glide_gravity_factor: float = 1
+@export var glide_speed_y: float = 10.0
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -23,9 +23,9 @@ func is_pointing_left() -> bool:
 func point_sprite():
 	animated_sprite_2d.flip_h = is_pointing_left()
 
-func apply_gravity(delta: float, factor: float = 1):
+func apply_gravity(delta: float):
 	if not is_on_floor():
-		velocity += get_gravity() * delta * factor
+		velocity += get_gravity() * delta
 	
 func can_jump() -> bool:
 	return jumps_used < jumps_available

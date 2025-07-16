@@ -54,7 +54,6 @@ size = Vector2(22, 28)
 
 [node name="pip" type="CharacterBody2D"]
 script = ExtResource("1_v4s67")
-glide_gravity_factor = 0.01
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
