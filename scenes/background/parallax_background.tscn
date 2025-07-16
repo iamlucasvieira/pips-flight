@@ -15,7 +15,7 @@ position = Vector2(320, 180)
 texture = ExtResource("1_pn103")
 
 [node name="BigStars" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.5, 0.5)
+motion_scale = Vector2(0.6, 0.6)
 motion_mirroring = Vector2(640, 0)
 
 [node name="background" type="Sprite2D" parent="BigStars"]
@@ -23,7 +23,7 @@ position = Vector2(320, 180)
 texture = ExtResource("2_ovcbr")
 
 [node name="SmallStars" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.6, 0.6)
+motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(640, 0)
 
 [node name="background" type="Sprite2D" parent="SmallStars"]
