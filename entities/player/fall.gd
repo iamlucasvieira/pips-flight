@@ -4,7 +4,7 @@ extends PlayerState
 
 
 func handle_input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump") and player.jumps_used <= player.jumps_available:
+	if event.is_action_pressed("jump"):
 		print("REJUMP")
 		finished.emit(JUMP)
 	
@@ -17,8 +17,11 @@ func physics_update(delta: float) -> void:
 	if player.is_on_floor():
 		finished.emit(IDLE)
 	
-	player.apply_gravity(delta)
-
+	var gravity_factor: float  = 1
+	if Input.is_action_pressed("glide") and player.velocity.y > 0:
+		gravity_factor = player.glide_gravity_factor
+	print(gravity_factor)
+	player.apply_gravity(delta, gravity_factor)
 	player.move_and_slide()
 
 func enter(_previous_state_path: String, _data := {}) -> void:

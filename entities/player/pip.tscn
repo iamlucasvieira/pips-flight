@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://fhtk761f0nig"]
+[gd_scene load_steps=14 format=3 uid="uid://fhtk761f0nig"]
 
 [ext_resource type="Script" uid="uid://cmvn2gsv3px1c" path="res://entities/player/pip.gd" id="1_v4s67"]
 [ext_resource type="Texture2D" uid="uid://idaap3ngwdxc" path="res://assets/pip.png" id="2_3u65c"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://cutdhkb2u65vu" path="res://entities/player/walk.gd" id="5_axdly"]
 [ext_resource type="Script" uid="uid://dp1t82bs18aqo" path="res://entities/player/jump.gd" id="6_8rdnu"]
 [ext_resource type="Script" uid="uid://qtr65vgm1ipv" path="res://entities/player/fall.gd" id="7_c25up"]
-[ext_resource type="Script" uid="uid://dgj1dw7d1eun6" path="res://entities/player/glide.gd" id="8_c25up"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_axdly"]
 atlas = ExtResource("2_3u65c")
@@ -55,7 +54,7 @@ size = Vector2(22, 28)
 
 [node name="pip" type="CharacterBody2D"]
 script = ExtResource("1_v4s67")
-glide_gravity_factor = 0.673
+glide_gravity_factor = 0.01
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -89,8 +88,4 @@ one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("7_c25up")
-metadata/_custom_type_script = "uid://cbwhfxqukfn8a"
-
-[node name="Glide" type="Node" parent="StateMachine"]
-script = ExtResource("8_c25up")
 metadata/_custom_type_script = "uid://cbwhfxqukfn8a"
