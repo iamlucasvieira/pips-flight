@@ -2,11 +2,9 @@ extends PlayerState
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 
-func update(_delta: float) -> void:
-	pass
-	
+
 func handle_input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
+	if event.is_action_pressed("jump") and player.jumps_used <= player.jumps_available:
 		print("REJUMP")
 		finished.emit(JUMP)
 	
@@ -14,13 +12,13 @@ func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		player.point_sprite()
-		player.velocity.x = direction * player.GLIDE_SPEED_X 
-
+		player.velocity.x = direction * player.SPEED_X
+	
 	if player.is_on_floor():
 		finished.emit(IDLE)
 	
-	player.apply_gravity(delta, player.glide_gravity_factor)
-	
+	player.apply_gravity(delta)
+
 	player.move_and_slide()
 
 func enter(_previous_state_path: String, _data := {}) -> void:

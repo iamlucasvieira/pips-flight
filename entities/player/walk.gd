@@ -3,21 +3,22 @@ extends PlayerState
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 
 func handle_input(event: InputEvent) -> void:
-	if event.is_action("jump"):
+	if event.is_action_pressed("jump"):
 		finished.emit(JUMP)
 
 func update(_delta: float) -> void:
 	pass
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
-		player.velocity.x = direction * player.SPEED
+		player.point_sprite()
+		player.velocity.x = direction * player.SPEED_X
 	else:
 		finished.emit(IDLE)
-
+	player.apply_gravity(delta)
 	player.move_and_slide()
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	animated_sprite_2d.play("walk")
-	animated_sprite_2d.flip_h = player.is_pointing_left()
+	player.point_sprite()

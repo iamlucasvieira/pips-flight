@@ -8,5 +8,5 @@ func _ready() -> void:
 	global_position.x = pip.global_position.x
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	global_position.x = pip.global_position.x
