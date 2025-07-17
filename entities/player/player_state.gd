@@ -5,6 +5,7 @@ const WALK = "Walk"
 const JUMP = "Jump"
 const FALL = "Fall"
 const GLIDE = "Glide"
+const WIND = "Wind"
 
 var player: Player
 

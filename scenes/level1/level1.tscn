@@ -94,6 +94,14 @@ horizontal_alignment = 1
 [node name="Camera2D" parent="." node_paths=PackedStringArray("pip") instance=ExtResource("2_wqsjc")]
 pip = NodePath("../pip")
 
+[node name="Wind" type="Node" parent="."]
+
+[node name="Wind" parent="Wind" instance=ExtResource("7_fcv37")]
+position = Vector2(257, 360)
+
+[node name="Wind2" parent="Wind" instance=ExtResource("7_fcv37")]
+position = Vector2(1973, 360)
+
 [node name="pip" parent="." instance=ExtResource("4_dpu10")]
 position = Vector2(297, 298)
 
@@ -109,7 +117,6 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 200)
 shape = SubResource("WorldBoundaryShape2D_iuonh")
 
-[node name="Wind" parent="." instance=ExtResource("7_fcv37")]
-position = Vector2(257, 360)
-
+[connection signal="player_enterd_wind" from="Wind/Wind" to="pip" method="_on_wind_player_enterd_wind"]
+[connection signal="player_enterd_wind" from="Wind/Wind2" to="pip" method="_on_wind_player_enterd_wind"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

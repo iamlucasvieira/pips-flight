@@ -10,11 +10,9 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
+	player.move_horizontally(delta)
 	var direction := Input.get_axis("move_left", "move_right")
-	if direction:
-		player.point_sprite()
-		player.velocity.x = direction * player.SPEED_X
-	else:
+	if not direction:
 		finished.emit(IDLE)
 	player.apply_gravity(delta)
 	player.move_and_slide()

@@ -19,6 +19,9 @@ func physics_update(delta: float) -> void:
 		finished.emit(WALK)
 		return
 	
+	if not player.is_on_floor():
+		finished.emit(FALL)
+		return
+	
 	player.velocity.x = move_toward(player.velocity.x, 0, player.SPEED_X)
-	player.apply_gravity(delta)
 	player.move_and_slide()
