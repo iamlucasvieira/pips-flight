@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw2vrv87e77op"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5a7b"]
+size = Vector2(43, 315)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqsjc"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 3
+emission_box_extents = Vector3(20, 0, 0)
+flatness = 1.0
+gravity = Vector3(0, -200, 0)
+turbulence_enabled = true
+turbulence_noise_scale = 4.285
+turbulence_noise_speed_random = 0.0
+
+[node name="Area2D" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -158)
+shape = SubResource("RectangleShape2D_s5a7b")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0.596078, 0.858824, 1)
+amount = 35
+lifetime = 5.0
+preprocess = 1.11
+trail_enabled = true
+trail_lifetime = 1.0
+trail_sections = 15
+trail_section_subdivisions = 15
+process_material = SubResource("ParticleProcessMaterial_wqsjc")
