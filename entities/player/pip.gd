@@ -2,7 +2,6 @@ class_name Player extends  CharacterBody2D
 
 const SPEED_X: float = 300.0
 const GLIDE_SPEED_X: float = 200.0
-const AIR_RESISTNACE_X: float = 150.0
 const JUMP_VELOCITY: float = -400.0
 
 signal entered_wind
@@ -41,7 +40,7 @@ func move_horizontally(delta: float, acelerate: bool = false):
 		else:
 			velocity.x = target_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, AIR_RESISTNACE_X * delta)
+		velocity.x = move_toward(velocity.x, 0, Game.AIR_RESISTNACE_X * delta)
 
 func can_jump() -> bool:
 	return jumps_used < jumps_available

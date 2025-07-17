@@ -23,5 +23,5 @@ func physics_update(delta: float) -> void:
 		finished.emit(FALL)
 		return
 	
-	player.velocity.x = move_toward(player.velocity.x, 0, player.SPEED_X)
+	player.velocity.x = 0
 	player.move_and_slide()
