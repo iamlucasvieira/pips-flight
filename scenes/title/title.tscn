@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0dp53pg8p00k"]
+[gd_scene load_steps=5 format=3 uid="uid://b0dp53pg8p00k"]
 
 [ext_resource type="PackedScene" uid="uid://0prxr3pd378b" path="res://scenes/background/parallax_background.tscn" id="1_5vtrw"]
 [ext_resource type="Texture2D" uid="uid://oy43w6uyn7jm" path="res://assets/title.png" id="2_ds13r"]
 [ext_resource type="Theme" uid="uid://cc6oyx24v3y1y" path="res://assets/main_theme.tres" id="3_gl121"]
+[ext_resource type="Script" uid="uid://dqxt5qlc4luku" path="res://scenes/title/button.gd" id="4_7hvf5"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -40,3 +41,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("3_gl121")
 text = "Play"
+script = ExtResource("4_7hvf5")
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_pressed"]
