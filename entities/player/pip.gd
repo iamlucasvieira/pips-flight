@@ -49,3 +49,7 @@ func _on_wind_player_enterd_wind() -> void:
 func _on_break_tile_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:
 		body.break_tile(position)
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body is TileMapLayer:
+		get_tree().reload_current_scene()

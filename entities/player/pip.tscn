@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://fhtk761f0nig"]
+[gd_scene load_steps=18 format=3 uid="uid://fhtk761f0nig"]
 
 [ext_resource type="Script" uid="uid://cmvn2gsv3px1c" path="res://entities/player/pip.gd" id="1_v4s67"]
 [ext_resource type="Texture2D" uid="uid://idaap3ngwdxc" path="res://assets/pip.png" id="2_3u65c"]
@@ -57,6 +57,9 @@ size = Vector2(22, 28)
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_dr6gl"]
 length = 2.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dr6gl"]
+size = Vector2(24, 30)
+
 [node name="pip" type="CharacterBody2D"]
 collision_mask = 7
 script = ExtResource("1_v4s67")
@@ -110,5 +113,14 @@ position = Vector2(0, 14)
 shape = SubResource("SeparationRayShape2D_dr6gl")
 debug_color = Color(0.642438, 0.335598, 1, 0.42)
 
+[node name="HitBox" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_dr6gl")
+debug_color = Color(0.865123, 0.356477, 1.92523e-07, 0.42)
+
 [connection signal="entered_wind" from="." to="StateMachine/Fall" method="_on_pip_entered_wind"]
 [connection signal="body_entered" from="BreakTile" to="." method="_on_break_tile_body_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
