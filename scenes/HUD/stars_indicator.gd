@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func set_texture_star_collected(star: Game.Star):
 	var texture: AtlasTexture = stars_mapping[star].texture
-	texture.region.position.x += 16
+	texture.region.position.x = 16
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_star_collected(_level: Game.Level, star: Game.Star):

@@ -10,7 +10,7 @@ func handle_input(event: InputEvent) -> void:
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_previous_state_path: String, _data := {}) -> void:
-	player.jumps_used = 0
+	Game.reset_jump_counter()
 	animated_sprite_2d.play("idle")
 
 func physics_update(_delta: float) -> void:

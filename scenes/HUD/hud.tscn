@@ -1,12 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c48kkvhnvdntn"]
+[gd_scene load_steps=7 format=3 uid="uid://c48kkvhnvdntn"]
 
-[ext_resource type="Texture2D" uid="uid://cj1new5f62x4f" path="res://assets/radial.png" id="1_glunx"]
+[ext_resource type="Script" uid="uid://papj7q7skifh" path="res://scenes/HUD/jump_indicator.gd" id="1_epp0c"]
 [ext_resource type="Script" uid="uid://b8kdpeawtc06h" path="res://scenes/HUD/stars_indicator.gd" id="2_epp0c"]
 [ext_resource type="Texture2D" uid="uid://de4nu20c1x0hd" path="res://assets/star.png" id="2_jjobl"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kcfjd"]
-atlas = ExtResource("1_glunx")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpu10"]
 atlas = ExtResource("2_jjobl")
@@ -36,28 +32,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="JumpIndicator2" type="HBoxContainer" parent="MarginContainer/TopBar"]
+[node name="JumpIndicator" type="HBoxContainer" parent="MarginContainer/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TopBar/JumpIndicator2"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_kcfjd")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/TopBar/JumpIndicator2"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_kcfjd")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/TopBar/JumpIndicator2"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_kcfjd")
-stretch_mode = 2
+script = ExtResource("1_epp0c")
 
 [node name="StarsIndicator" type="HBoxContainer" parent="MarginContainer/TopBar"]
 layout_mode = 2

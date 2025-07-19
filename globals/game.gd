@@ -3,9 +3,15 @@ extends Node
 # Signals for other systems to listen to
 signal star_collected(level: Level, star: Star)
 signal level_completed(level: Level, stars_count: int)
+signal jumps_available_set
+signal jumps_counter_updated
 
 const WIND_GUST_SPEED_Y = -500
 const AIR_RESISTNACE_X: float = 150.0
+
+# Player Vars
+var jumps_available: int
+var jumps_used: int = 0
 
 # Level management
 enum Level { ONE, TWO, THREE }  # Easy to add more levels
@@ -49,3 +55,17 @@ func get_stars_collected_count(level: Level) -> int:
 
 func is_star_collected(star: Star, level: Level = current_level) -> bool:
 	return star in stars_collected[level]
+
+func increase_jump_counter():
+	jumps_used += 1
+	jumps_counter_updated.emit()
+	if jumps_used == jumps_available:
+		printerr("Playes is jumping more than allowed")
+
+func reset_jump_counter():
+	jumps_used = 0
+	jumps_counter_updated.emit()
+	
+func set_jumps_available(jumpus_avaiable_value: int):
+	jumps_available = jumpus_avaiable_value
+	jumps_available_set.emit()

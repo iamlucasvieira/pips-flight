@@ -6,12 +6,10 @@ const JUMP_VELOCITY: float = -400.0
 
 signal entered_wind
 
-@export var jumps_available: int = 2
 @export var glide_speed_y: float = 10.0
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-var jumps_used: int = 0
 var POINTING_LEFT: bool = true
 
 
@@ -43,7 +41,7 @@ func move_horizontally(delta: float, acelerate: bool = false):
 		velocity.x = move_toward(velocity.x, 0, Game.AIR_RESISTNACE_X * delta)
 
 func can_jump() -> bool:
-	return jumps_used < jumps_available
+	return Game.jumps_used < Game.jumps_available
 	
 func _on_wind_player_enterd_wind() -> void:
 	entered_wind.emit()

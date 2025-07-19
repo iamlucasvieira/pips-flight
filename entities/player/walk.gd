@@ -6,9 +6,6 @@ func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		finished.emit(JUMP)
 
-func update(_delta: float) -> void:
-	pass
-
 func physics_update(delta: float) -> void:
 	player.move_horizontally(delta)
 	var direction := Input.get_axis("move_left", "move_right")
