@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fhtk761f0nig"]
+[gd_scene load_steps=17 format=3 uid="uid://fhtk761f0nig"]
 
 [ext_resource type="Script" uid="uid://cmvn2gsv3px1c" path="res://entities/player/pip.gd" id="1_v4s67"]
 [ext_resource type="Texture2D" uid="uid://idaap3ngwdxc" path="res://assets/pip.png" id="2_3u65c"]
@@ -54,10 +54,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulu8d"]
 size = Vector2(22, 28)
 
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_dr6gl"]
+length = 2.0
+
 [node name="pip" type="CharacterBody2D"]
 collision_mask = 7
 script = ExtResource("1_v4s67")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_axdly")
@@ -100,4 +102,13 @@ metadata/_custom_type_script = "uid://cbwhfxqukfn8a"
 script = ExtResource("9_dr6gl")
 metadata/_custom_type_script = "uid://cbwhfxqukfn8a"
 
+[node name="BreakTile" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BreakTile"]
+position = Vector2(0, 14)
+shape = SubResource("SeparationRayShape2D_dr6gl")
+debug_color = Color(0.642438, 0.335598, 1, 0.42)
+
 [connection signal="entered_wind" from="." to="StateMachine/Fall" method="_on_pip_entered_wind"]
+[connection signal="body_entered" from="BreakTile" to="." method="_on_break_tile_body_entered"]

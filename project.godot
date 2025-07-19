@@ -61,6 +61,7 @@ glide={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Ground"
 2d_physics/layer_3="BreakableGround"
+2d_physics/layer_4="HitZone"
 
 [rendering]
 

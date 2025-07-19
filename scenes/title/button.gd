@@ -1,7 +1,5 @@
 extends Button
 
-const LEVEL_1 = preload("res://scenes/level1/level1.tscn")
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -13,5 +11,4 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	get_tree().change_scene_to_packed(LEVEL_1)
-	
+	Game.start_level(Game.Level.ONE)
