@@ -44,10 +44,12 @@ func get_current_level() -> Level:
 	var current_scene = get_tree().current_scene
 	if not current_scene:
 		printerr("No current scene found!")
-		return Level.ONE
-	
+		
 	var scene_name = current_scene.name.to_lower()
-	return scene_to_level[scene_name]
+	if scene_name in scene_to_level:
+		return scene_to_level[scene_name]
+	
+	return Level.ONE
 
 func start_level(level: Level):
 	if level not in LEVEL_SCENES:
