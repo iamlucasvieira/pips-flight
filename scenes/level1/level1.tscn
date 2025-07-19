@@ -2,16 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b4ovtkylpmo4x" path="res://scenes/level1/level1.gd" id="1_wqsjc"]
 [ext_resource type="PackedScene" uid="uid://blmfrhhxlo1mv" path="res://scenes/camera/camera.tscn" id="2_wqsjc"]
+[ext_resource type="PackedScene" uid="uid://c1j5f6qay1dfv" path="res://scenes/ui/label/label.tscn" id="3_q6uuj"]
 [ext_resource type="PackedScene" uid="uid://0prxr3pd378b" path="res://scenes/background/parallax_background.tscn" id="4_68lc7"]
 [ext_resource type="PackedScene" uid="uid://fhtk761f0nig" path="res://entities/player/pip.tscn" id="4_dpu10"]
 [ext_resource type="TileSet" uid="uid://dygaehrvm5mi5" path="res://assets/main.tres" id="6_wmcwa"]
-[ext_resource type="Theme" uid="uid://cc6oyx24v3y1y" path="res://assets/main_theme.tres" id="6_wqsjc"]
 [ext_resource type="Script" uid="uid://cyr2681lpj1sl" path="res://scenes/effects/TileBreaker/tile_breaker.gd" id="8_dpu10"]
 [ext_resource type="PackedScene" uid="uid://c48kkvhnvdntn" path="res://scenes/HUD/hud.tscn" id="8_q6uuj"]
+[ext_resource type="PackedScene" uid="uid://c67fqfi4ux2vl" path="res://entities/eow/eow.tscn" id="8_wmcwa"]
 [ext_resource type="PackedScene" uid="uid://dmw6e32l5d0um" path="res://entities/star/animated_sprite_2d.tscn" id="10_q6uuj"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iuonh"]
-distance = -360.0
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_wqsjc")
@@ -24,74 +22,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="1" type="PanelContainer" parent="Text"]
+[node name="TextLabel" parent="Text" instance=ExtResource("3_q6uuj")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 263.0
-offset_top = 194.0
-offset_right = 535.0
-offset_bottom = 257.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_wqsjc")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="Text/1"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("6_wqsjc")
-text = "Learning to fly can be difficult..."
-horizontal_alignment = 1
-
-[node name="2" type="PanelContainer" parent="Text"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 906.0
-offset_top = 129.0
-offset_right = 1210.0
-offset_bottom = 192.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_wqsjc")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="Text/2"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("6_wqsjc")
-text = "But if you just start, you can do it..."
-horizontal_alignment = 1
-
-[node name="3" type="PanelContainer" parent="Text"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 1759.0
-offset_top = 183.0
-offset_right = 1937.0
-offset_bottom = 246.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_wqsjc")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="Text/3"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("6_wqsjc")
-text = "Go Pip! Jump  [SPACE]"
-horizontal_alignment = 1
+offset_left = 310.0
+offset_top = 187.0
+offset_right = 370.0
+offset_bottom = 250.0
+text = "You can do it Pip"
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("pip") instance=ExtResource("2_wqsjc")]
 pip = NodePath("../pip")
@@ -110,11 +47,7 @@ tile_map_data = PackedByteArray("AAASABUAAAAAAAAAAAASABQAAAAAAAEAAAATABUAAAABAAE
 tile_set = ExtResource("6_wmcwa")
 metadata/_edit_lock_ = true
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 200)
-shape = SubResource("WorldBoundaryShape2D_iuonh")
+[node name="EOW" parent="." instance=ExtResource("8_wmcwa")]
 
 [node name="HUD" parent="." instance=ExtResource("8_q6uuj")]
 
@@ -130,5 +63,3 @@ star = 1
 [node name="C" parent="Stars" instance=ExtResource("10_q6uuj")]
 position = Vector2(9906, -229)
 star = 2
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -59,7 +59,7 @@ func is_star_collected(star: Star, level: Level = current_level) -> bool:
 func increase_jump_counter():
 	jumps_used += 1
 	jumps_counter_updated.emit()
-	if jumps_used == jumps_available:
+	if jumps_used > jumps_available:
 		printerr("Playes is jumping more than allowed")
 
 func reset_jump_counter():

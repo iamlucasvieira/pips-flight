@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1j5f6qay1dfv"]
+
+[ext_resource type="Theme" uid="uid://cc6oyx24v3y1y" path="res://assets/main_theme.tres" id="1_ebd56"]
+[ext_resource type="Script" uid="uid://dauhm2v8ql0v0" path="res://scenes/ui/label/label.gd" id="2_d6a7n"]
+
+[node name="TextLabel" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -31.5
+offset_right = 30.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_ebd56")
+script = ExtResource("2_d6a7n")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_ebd56")
+text = "Text"
+horizontal_alignment = 1
