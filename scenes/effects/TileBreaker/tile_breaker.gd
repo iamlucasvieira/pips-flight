@@ -2,14 +2,12 @@ extends Node
 
 var tilemap: TileMapLayer
 var tiles_to_delete: Array[Vector2i] = []
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	# Find the parent TileMapLayer
 	var parent = get_parent()
 	if parent is TileMapLayer:
 		tilemap = parent
-		print("TileBreaker ready for tilemap: ", tilemap.name)
 	else:
 		print("Error: TileBreaker must be a child of a TileMapLayer!")
 
@@ -31,9 +29,6 @@ func try_break_tile(world_pos: Vector2i):
 	return false
 
 func break_tile_with_flash(tile_pos: Vector2i):
-	print("Breaking tile at: ", tile_pos)
-	
-	# Create a simple tween for flash effect
 	var tween = create_tween()
 	
 	# Flash white

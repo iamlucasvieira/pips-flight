@@ -17,5 +17,5 @@ func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.move_and_slide()
 
-func enter(previous_state_path: String, _data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	player.point_sprite()

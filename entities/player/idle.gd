@@ -14,7 +14,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	player.try_to_break_tile()
 	animated_sprite_2d.play("idle")
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		finished.emit(WALK)
