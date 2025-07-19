@@ -11,6 +11,7 @@ func handle_input(event: InputEvent) -> void:
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_previous_state_path: String, _data := {}) -> void:
 	player.jumps_used = 0
+	player.try_to_break_tile()
 	animated_sprite_2d.play("idle")
 
 func physics_update(delta: float) -> void:

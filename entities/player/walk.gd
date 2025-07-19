@@ -15,6 +15,7 @@ func physics_update(delta: float) -> void:
 	if not direction:
 		finished.emit(IDLE)
 	player.apply_gravity(delta)
+	player.try_to_break_tile()
 	player.move_and_slide()
 
 func enter(_previous_state_path: String, _data := {}) -> void:

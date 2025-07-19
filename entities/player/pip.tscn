@@ -55,6 +55,7 @@ animations = [{
 size = Vector2(22, 28)
 
 [node name="pip" type="CharacterBody2D"]
+collision_mask = 7
 script = ExtResource("1_v4s67")
 metadata/_edit_group_ = true
 

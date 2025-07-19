@@ -5,6 +5,7 @@ const GLIDE_SPEED_X: float = 200.0
 const JUMP_VELOCITY: float = -400.0
 
 signal entered_wind
+signal try_break_tile_at(position: Vector2)
 
 @export var jumps_available: int = 2
 @export var glide_speed_y: float = 10.0
@@ -41,6 +42,12 @@ func move_horizontally(delta: float, acelerate: bool = false):
 			velocity.x = target_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, Game.AIR_RESISTNACE_X * delta)
+
+
+func try_to_break_tile():
+	if is_on_floor():
+		try_break_tile_at.emit(position)
+		
 
 func can_jump() -> bool:
 	return jumps_used < jumps_available
