@@ -2,7 +2,6 @@ extends Node
 
 # Signals for other systems to listen to
 signal star_collected(level: Level, star: Star)
-signal level_completed(level: Level, stars_count: int)
 signal jumps_counter_updated
 
 const WIND_GUST_SPEED_Y = -500
@@ -14,13 +13,19 @@ var jumps_used: int = 0
 # Level management
 enum Level { ONE, TWO, THREE }  # Easy to add more levels
 enum Star {A, B, C}
-var current_level: Level
+@onready var current_level: Level = get_current_level()
 
 # Level scenes - easier to manage
 const LEVEL_SCENES = {
 	Level.ONE: preload("res://scenes/levels/level_1.tscn"),
 	Level.TWO: preload("res://scenes/levels/level_2.tscn"),
 	# Level.THREE: preload("res://scenes/level3/level3.tscn"),
+}
+
+
+var scene_to_level = {
+	"level1": Level.ONE,
+	"level2": Level.TWO
 }
 
 var stars_collected = {
@@ -34,6 +39,15 @@ var jumps_available = {
 	Level.TWO: 3,
 }
 
+
+func get_current_level() -> Level:
+	var current_scene = get_tree().current_scene
+	if not current_scene:
+		printerr("No current scene found!")
+		return Level.ONE
+	
+	var scene_name = current_scene.name.to_lower()
+	return scene_to_level[scene_name]
 
 func start_level(level: Level):
 	if level not in LEVEL_SCENES:

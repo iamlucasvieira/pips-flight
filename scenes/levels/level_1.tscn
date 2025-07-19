@@ -1,25 +1,16 @@
-[gd_scene load_steps=14 format=4 uid="uid://cueh2fgtv8o3q"]
+[gd_scene load_steps=12 format=4 uid="uid://cueh2fgtv8o3q"]
 
 [ext_resource type="PackedScene" uid="uid://blmfrhhxlo1mv" path="res://scenes/camera/camera.tscn" id="2_wqsjc"]
 [ext_resource type="PackedScene" uid="uid://c1j5f6qay1dfv" path="res://scenes/ui/label/label.tscn" id="3_q6uuj"]
 [ext_resource type="PackedScene" uid="uid://0prxr3pd378b" path="res://scenes/background/parallax_background.tscn" id="4_68lc7"]
 [ext_resource type="PackedScene" uid="uid://fhtk761f0nig" path="res://entities/player/pip.tscn" id="4_dpu10"]
 [ext_resource type="TileSet" uid="uid://dygaehrvm5mi5" path="res://assets/main.tres" id="6_wmcwa"]
-[ext_resource type="Texture2D" uid="uid://ct87l4x2aqtq7" path="res://assets/spike.png" id="7_excbq"]
+[ext_resource type="TileSet" uid="uid://kjc6hjufy85k" path="res://assets/spike.tres" id="7_excbq"]
 [ext_resource type="Script" uid="uid://cyr2681lpj1sl" path="res://scenes/effects/TileBreaker/tile_breaker.gd" id="8_dpu10"]
 [ext_resource type="PackedScene" uid="uid://c48kkvhnvdntn" path="res://scenes/HUD/hud.tscn" id="8_q6uuj"]
 [ext_resource type="PackedScene" uid="uid://c67fqfi4ux2vl" path="res://entities/eow/eow.tscn" id="8_wmcwa"]
 [ext_resource type="PackedScene" uid="uid://dmw6e32l5d0um" path="res://entities/star/animated_sprite_2d.tscn" id="10_q6uuj"]
 [ext_resource type="PackedScene" uid="uid://b6vsvfpcpaok" path="res://scenes/NextLevel/next_level.tscn" id="11_wmcwa"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iav0o"]
-texture = ExtResource("7_excbq")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_dnkej"]
-physics_layer_0/collision_layer = 8
-sources/0 = SubResource("TileSetAtlasSource_iav0o")
 
 [node name="Level1" type="Node2D"]
 
@@ -58,7 +49,7 @@ metadata/_edit_lock_ = true
 
 [node name="Spikes" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAA3ABIAAAAAAAAAAAA4ABIAAAAAAAAAAAA5ABIAAAAAAAAAAABHABIAAAAAAAAAAABIABIAAAAAAAAAAABJABIAAAAAAAAAAACaARAAAAAAAAAAAACZARAAAAAAAAAAAACbARAAAAAAAAAAAACcARAAAAAAAAAAAADTARAAAAAAAAAAAADUARAAAAAAAAAAAADVARAAAAAAAAAAAADWARAAAAAAAAAAAABlAvT/AAAAAAAAAABkAvT/AAAAAAAAAAB3AhIAAAAAAAAAAAB4AhIAAAAAAAAAAAB5AhIAAAAAAAAAAACFAhIAAAAAAAAAAACGAhIAAAAAAAAAAACHAhIAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_dnkej")
+tile_set = ExtResource("7_excbq")
 
 [node name="EOW" parent="." instance=ExtResource("8_wmcwa")]
 
@@ -78,4 +69,5 @@ position = Vector2(9906, -229)
 star = 2
 
 [node name="NextLevel" parent="." instance=ExtResource("11_wmcwa")]
+position = Vector2(11206, 379)
 next_level = 1

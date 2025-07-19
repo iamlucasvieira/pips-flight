@@ -10,7 +10,7 @@ signal entered_wind
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-var POINTING_LEFT: bool = true
+var POINTING_LEFT: bool = false
 
 
 func is_pointing_left() -> bool:

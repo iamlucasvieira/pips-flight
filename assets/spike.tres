@@ -1,0 +1,12 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://kjc6hjufy85k"]
+
+[ext_resource type="Texture2D" uid="uid://ct87l4x2aqtq7" path="res://assets/spike.png" id="1_a4bgs"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iav0o"]
+texture = ExtResource("1_a4bgs")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[resource]
+physics_layer_0/collision_layer = 8
+sources/0 = SubResource("TileSetAtlasSource_iav0o")
