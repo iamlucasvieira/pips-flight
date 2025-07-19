@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cueh2fgtv8o3q"]
+[gd_scene load_steps=11 format=4 uid="uid://cueh2fgtv8o3q"]
 
 [ext_resource type="Script" uid="uid://b4ovtkylpmo4x" path="res://scenes/level1/level1.gd" id="1_wqsjc"]
 [ext_resource type="PackedScene" uid="uid://blmfrhhxlo1mv" path="res://scenes/camera/camera.tscn" id="2_wqsjc"]
@@ -7,20 +7,11 @@
 [ext_resource type="TileSet" uid="uid://dygaehrvm5mi5" path="res://assets/main.tres" id="6_wmcwa"]
 [ext_resource type="Theme" uid="uid://cc6oyx24v3y1y" path="res://assets/main_theme.tres" id="6_wqsjc"]
 [ext_resource type="Script" uid="uid://cyr2681lpj1sl" path="res://scenes/effects/TileBreaker/tile_breaker.gd" id="8_dpu10"]
-[ext_resource type="Texture2D" uid="uid://cj1new5f62x4f" path="res://assets/radial.png" id="8_kcfjd"]
-[ext_resource type="Texture2D" uid="uid://de4nu20c1x0hd" path="res://assets/star.png" id="9_dpu10"]
+[ext_resource type="PackedScene" uid="uid://c48kkvhnvdntn" path="res://scenes/HUD/hud.tscn" id="8_q6uuj"]
 [ext_resource type="PackedScene" uid="uid://dmw6e32l5d0um" path="res://entities/star/animated_sprite_2d.tscn" id="10_q6uuj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iuonh"]
 distance = -360.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kcfjd"]
-atlas = ExtResource("8_kcfjd")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dpu10"]
-atlas = ExtResource("9_dpu10")
-region = Rect2(0, 0, 16, 16)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_wqsjc")
@@ -106,7 +97,7 @@ horizontal_alignment = 1
 pip = NodePath("../pip")
 
 [node name="pip" parent="." instance=ExtResource("4_dpu10")]
-position = Vector2(8712, 279)
+position = Vector2(359, 286)
 collision_mask = 15
 
 [node name="BreakableLayer" type="TileMapLayer" parent="."]
@@ -125,70 +116,19 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 200)
 shape = SubResource("WorldBoundaryShape2D_iuonh")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TopBar" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="JumpIndicator2" type="HBoxContainer" parent="CanvasLayer/MarginContainer/TopBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 4
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/TopBar/JumpIndicator2"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_kcfjd")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/TopBar/JumpIndicator2"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_kcfjd")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/MarginContainer/TopBar/JumpIndicator2"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_kcfjd")
-stretch_mode = 2
-
-[node name="JumpIndicator3" type="HBoxContainer" parent="CanvasLayer/MarginContainer/TopBar"]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/TopBar/JumpIndicator3"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_dpu10")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/TopBar/JumpIndicator3"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_dpu10")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/MarginContainer/TopBar/JumpIndicator3"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_dpu10")
-stretch_mode = 2
+[node name="HUD" parent="." instance=ExtResource("8_q6uuj")]
 
 [node name="Stars" type="Node" parent="."]
 
-[node name="AnimatedSprite2D" parent="Stars" instance=ExtResource("10_q6uuj")]
-position = Vector2(8819, 289)
+[node name="A" parent="Stars" instance=ExtResource("10_q6uuj")]
+position = Vector2(4286, -98)
+
+[node name="B" parent="Stars" instance=ExtResource("10_q6uuj")]
+position = Vector2(7507, 204)
+star = 1
+
+[node name="C" parent="Stars" instance=ExtResource("10_q6uuj")]
+position = Vector2(9906, -229)
+star = 2
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
