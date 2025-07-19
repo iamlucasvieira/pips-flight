@@ -41,7 +41,7 @@ func move_horizontally(delta: float, acelerate: bool = false):
 		velocity.x = move_toward(velocity.x, 0, Game.AIR_RESISTNACE_X * delta)
 
 func can_jump() -> bool:
-	return Game.jumps_used < Game.jumps_available
+	return Game.jumps_used < Game.get_jumps_available()
 	
 func _on_wind_player_enterd_wind() -> void:
 	entered_wind.emit()

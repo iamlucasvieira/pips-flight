@@ -1,6 +1,5 @@
 [gd_scene load_steps=11 format=4 uid="uid://cueh2fgtv8o3q"]
 
-[ext_resource type="Script" uid="uid://b4ovtkylpmo4x" path="res://scenes/level1/level1.gd" id="1_wqsjc"]
 [ext_resource type="PackedScene" uid="uid://blmfrhhxlo1mv" path="res://scenes/camera/camera.tscn" id="2_wqsjc"]
 [ext_resource type="PackedScene" uid="uid://c1j5f6qay1dfv" path="res://scenes/ui/label/label.tscn" id="3_q6uuj"]
 [ext_resource type="PackedScene" uid="uid://0prxr3pd378b" path="res://scenes/background/parallax_background.tscn" id="4_68lc7"]
@@ -10,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c48kkvhnvdntn" path="res://scenes/HUD/hud.tscn" id="8_q6uuj"]
 [ext_resource type="PackedScene" uid="uid://c67fqfi4ux2vl" path="res://entities/eow/eow.tscn" id="8_wmcwa"]
 [ext_resource type="PackedScene" uid="uid://dmw6e32l5d0um" path="res://entities/star/animated_sprite_2d.tscn" id="10_q6uuj"]
+[ext_resource type="PackedScene" uid="uid://b6vsvfpcpaok" path="res://scenes/NextLevel/next_level.tscn" id="11_wmcwa"]
 
 [node name="Level1" type="Node2D"]
-script = ExtResource("1_wqsjc")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_68lc7")]
 
@@ -63,3 +62,6 @@ star = 1
 [node name="C" parent="Stars" instance=ExtResource("10_q6uuj")]
 position = Vector2(9906, -229)
 star = 2
+
+[node name="NextLevel" parent="." instance=ExtResource("11_wmcwa")]
+next_level = 1
