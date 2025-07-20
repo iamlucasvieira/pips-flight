@@ -5,5 +5,5 @@ extends PlayerState
 func enter(previous_state_path: String, _data := {}) -> void:
 	animated_sprite_2d.play("fly")
 
-func physics_update(delta: float) -> void:	
+func physics_update(_delta: float) -> void:	
 	player.move_and_slide()

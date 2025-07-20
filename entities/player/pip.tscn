@@ -185,6 +185,7 @@ shape = SubResource("RectangleShape2D_dr6gl")
 debug_color = Color(0.865123, 0.356477, 1.92523e-07, 0.42)
 
 [node name="DieAudio" type="AudioStreamPlayer2D" parent="."]
+process_mode = 2
 stream = ExtResource("11_4cj8m")
 bus = &"SFX"
 
