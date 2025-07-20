@@ -18,13 +18,13 @@ config/icon="uid://oy43w6uyn7jm"
 [autoload]
 
 Game="*res://globals/game.gd"
-Music="*res://scenes/music.gd"
+Music="*res://scenes/music/music.tscn"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 

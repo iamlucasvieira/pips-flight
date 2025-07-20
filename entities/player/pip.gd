@@ -66,8 +66,6 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 
 func die() -> void:
 	die_audio.play()
-	#sounds.play("die")
-
-func restart_scene() -> void:
+	await die_audio.finished
 	get_tree().reload_current_scene()
  

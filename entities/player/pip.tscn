@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://fhtk761f0nig"]
+[gd_scene load_steps=23 format=3 uid="uid://fhtk761f0nig"]
 
 [ext_resource type="Script" uid="uid://cmvn2gsv3px1c" path="res://entities/player/pip.gd" id="1_v4s67"]
 [ext_resource type="Texture2D" uid="uid://idaap3ngwdxc" path="res://assets/pip.png" id="2_3u65c"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dgj1dw7d1eun6" path="res://entities/player/glide.gd" id="8_c25up"]
 [ext_resource type="Script" uid="uid://350fbki4c0uk" path="res://entities/player/wind.gd" id="9_dr6gl"]
 [ext_resource type="Script" uid="uid://b16p6rbky605g" path="res://entities/player/flying.gd" id="10_tdfho"]
+[ext_resource type="AudioStream" uid="uid://1yee6wesboi1" path="res://sounds/Game over.wav" id="11_4cj8m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dr6gl"]
 atlas = ExtResource("2_3u65c")
@@ -117,68 +118,6 @@ length = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dr6gl"]
 size = Vector2(16, 30)
 
-[sub_resource type="Animation" id="Animation_4cj8m"]
-resource_name = "die"
-length = 2.0
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"restart_scene"
-}]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DieAudio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [],
-"times": PackedFloat32Array()
-}
-tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DieAudio:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_tdfho"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DieAudio:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_un8ed"]
-_data = {
-&"RESET": SubResource("Animation_tdfho"),
-&"die": SubResource("Animation_4cj8m")
-}
-
 [node name="pip" type="CharacterBody2D"]
 collision_mask = 7
 script = ExtResource("1_v4s67")
@@ -246,12 +185,8 @@ shape = SubResource("RectangleShape2D_dr6gl")
 debug_color = Color(0.865123, 0.356477, 1.92523e-07, 0.42)
 
 [node name="DieAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_4cj8m")
 bus = &"SFX"
-
-[node name="Sounds" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_un8ed")
-}
 
 [connection signal="entered_wind" from="." to="StateMachine/Fall" method="_on_pip_entered_wind"]
 [connection signal="body_entered" from="BreakTile" to="." method="_on_break_tile_body_entered"]

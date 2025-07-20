@@ -1,8 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhfct0w12icf2"]
+[gd_scene load_steps=3 format=3 uid="uid://dd7x1ddwrsb0t"]
 
-[ext_resource type="AudioStream" uid="uid://dcje2hnpd1iiy" path="res://sounds/My Song 2.wav" id="1_05ggv"]
-[ext_resource type="Script" uid="uid://ch8fog4nc3bgo" path="res://scenes/music.gd" id="2_ibx2e"]
+[ext_resource type="AudioStream" uid="uid://c4s6famc7cipw" path="res://sounds/Polar Lights.wav" id="1_ibx2e"]
+
+[sub_resource type="GDScript" id="GDScript_05ggv"]
+script/source = "extends AudioStreamPlayer2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	print(\"SHOUL PLAY\")
+	play()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="Music" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_05ggv")
-script = ExtResource("2_ibx2e")
+stream = ExtResource("1_ibx2e")
+script = SubResource("GDScript_05ggv")
