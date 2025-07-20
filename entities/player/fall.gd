@@ -16,14 +16,16 @@ func physics_update(delta: float) -> void:
 		return
 	
 	# Handle gliding
-	if Input.is_action_pressed("glide"):
+	if player.can_glide and Input.is_action_pressed("glide"):
 		finished.emit(GLIDE)
 		return
 	
 	player.apply_gravity(delta)
 	player.move_and_slide()
 
-func enter(_previous_state_path: String, _data := {}) -> void:
+func enter(previous_state_path: String, _data := {}) -> void:
+	if previous_state_path != JUMP:
+		animated_sprite_2d.play("fall")
 	player.point_sprite()
 
 func _on_pip_entered_wind() -> void:

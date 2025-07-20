@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn7l3x01g52sc"]
+
+[ext_resource type="Theme" uid="uid://cc6oyx24v3y1y" path="res://assets/main_theme.tres" id="1_sfwv4"]
+[ext_resource type="Script" uid="uid://dclnqurpka2tx" path="res://scenes/ui/label/label_with_icon.gd" id="2_kiidc"]
+[ext_resource type="Texture2D" uid="uid://coc33jj2dgvw6" path="res://assets/icons.png" id="3_o5p6a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiidc"]
+atlas = ExtResource("3_o5p6a")
+region = Rect2(32, 0, 16, 16)
+
+[node name="TextLabel" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -31.5
+offset_right = 30.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_sfwv4")
+script = ExtResource("2_kiidc")
+icon = 1
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_kiidc")

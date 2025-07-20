@@ -7,6 +7,7 @@ const JUMP_VELOCITY: float = -400.0
 signal entered_wind
 
 @export var glide_speed_y: float = 10.0
+@export var can_glide: bool = false
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 

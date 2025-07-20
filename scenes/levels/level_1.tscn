@@ -69,5 +69,5 @@ position = Vector2(9906, -229)
 star = 2
 
 [node name="NextLevel" parent="." instance=ExtResource("11_wmcwa")]
-position = Vector2(11206, 379)
+position = Vector2(11735, 337)
 next_level = 1
