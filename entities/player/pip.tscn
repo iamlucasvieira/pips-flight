@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://fhtk761f0nig"]
+[gd_scene load_steps=25 format=3 uid="uid://fhtk761f0nig"]
 
 [ext_resource type="Script" uid="uid://cmvn2gsv3px1c" path="res://entities/player/pip.gd" id="1_v4s67"]
 [ext_resource type="Texture2D" uid="uid://idaap3ngwdxc" path="res://assets/pip.png" id="2_3u65c"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://qtr65vgm1ipv" path="res://entities/player/fall.gd" id="7_c25up"]
 [ext_resource type="Script" uid="uid://dgj1dw7d1eun6" path="res://entities/player/glide.gd" id="8_c25up"]
 [ext_resource type="Script" uid="uid://350fbki4c0uk" path="res://entities/player/wind.gd" id="9_dr6gl"]
+[ext_resource type="Script" uid="uid://b16p6rbky605g" path="res://entities/player/flying.gd" id="10_tdfho"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dr6gl"]
 atlas = ExtResource("2_3u65c")
@@ -66,6 +67,17 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_dr6gl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdfho")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 12.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4cj8m")
 }],
@@ -105,15 +117,77 @@ length = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dr6gl"]
 size = Vector2(16, 30)
 
+[sub_resource type="Animation" id="Animation_4cj8m"]
+resource_name = "die"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart_scene"
+}]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DieAudio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DieAudio:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_tdfho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DieAudio:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_un8ed"]
+_data = {
+&"RESET": SubResource("Animation_tdfho"),
+&"die": SubResource("Animation_4cj8m")
+}
+
 [node name="pip" type="CharacterBody2D"]
 collision_mask = 7
 script = ExtResource("1_v4s67")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_axdly")
-animation = &"fall"
+animation = &"fly"
 autoplay = "idle"
-frame_progress = 0.524227
+frame_progress = 0.230221
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
@@ -151,6 +225,10 @@ metadata/_custom_type_script = "uid://cbwhfxqukfn8a"
 script = ExtResource("9_dr6gl")
 metadata/_custom_type_script = "uid://cbwhfxqukfn8a"
 
+[node name="Fly" type="Node" parent="StateMachine"]
+script = ExtResource("10_tdfho")
+metadata/_custom_type_script = "uid://cbwhfxqukfn8a"
+
 [node name="BreakTile" type="Area2D" parent="."]
 collision_mask = 4
 
@@ -166,6 +244,14 @@ collision_mask = 8
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_dr6gl")
 debug_color = Color(0.865123, 0.356477, 1.92523e-07, 0.42)
+
+[node name="DieAudio" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="Sounds" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_un8ed")
+}
 
 [connection signal="entered_wind" from="." to="StateMachine/Fall" method="_on_pip_entered_wind"]
 [connection signal="body_entered" from="BreakTile" to="." method="_on_break_tile_body_entered"]

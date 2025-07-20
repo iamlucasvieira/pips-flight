@@ -6,6 +6,7 @@ const JUMP = "Jump"
 const FALL = "Fall"
 const GLIDE = "Glide"
 const WIND = "Wind"
+const FLY = "Fly"
 
 var player: Player
 

@@ -5,14 +5,23 @@ const GLIDE_SPEED_X: float = 200.0
 const JUMP_VELOCITY: float = -400.0
 
 signal entered_wind
+@onready var die_audio: AudioStreamPlayer2D = $DieAudio
 
 @export var glide_speed_y: float = 10.0
 @export var can_glide: bool = false
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var state_machine: StateMachine = $StateMachine
+@onready var sounds: AnimationPlayer = $Sounds
 
 var POINTING_LEFT: bool = false
 
+func _ready() -> void:
+	connect_wind()
+	
+func connect_wind() -> void:
+	for node in get_tree().get_nodes_in_group("wind"):
+		(node as Wind).player_enterd_wind.connect(_on_wind_player_enterd_wind)
 
 func is_pointing_left() -> bool:
 	var direction := Input.get_axis("move_left", "move_right")
@@ -53,4 +62,12 @@ func _on_break_tile_body_entered(body: Node2D) -> void:
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:
-		get_tree().reload_current_scene()
+		die()
+
+func die() -> void:
+	die_audio.play()
+	#sounds.play("die")
+
+func restart_scene() -> void:
+	get_tree().reload_current_scene()
+ 

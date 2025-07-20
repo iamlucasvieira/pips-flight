@@ -19,24 +19,26 @@ enum Star {A, B, C}
 const LEVEL_SCENES = {
 	Level.ONE: preload("res://scenes/levels/level_1.tscn"),
 	Level.TWO: preload("res://scenes/levels/level_2.tscn"),
-	# Level.THREE: preload("res://scenes/level3/level3.tscn"),
+	Level.THREE: preload("res://scenes/levels/level_3.tscn"),
 }
 
 
 var scene_to_level = {
 	"level1": Level.ONE,
-	"level2": Level.TWO
+	"level2": Level.TWO,
+	"level3": Level.THREE
 }
 
 var stars_collected = {
 	Level.ONE: [],  
-	 Level.TWO: [],
-	# Level.THREE: [],
+	Level.TWO: [],
+	Level.THREE: [],
 }
 
 var jumps_available = {
 	Level.ONE: 1,
 	Level.TWO: 3,
+	Level.THREE: 6
 }
 
 

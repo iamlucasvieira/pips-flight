@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cye15g3i0qo4b"]
+
+[ext_resource type="Script" uid="uid://b8kdpeawtc06h" path="res://scenes/HUD/stars_indicator.gd" id="1_h16bt"]
+[ext_resource type="Texture2D" uid="uid://de4nu20c1x0hd" path="res://assets/star.png" id="2_3gd2v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h16bt"]
+atlas = ExtResource("2_3gd2v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gd2v"]
+atlas = ExtResource("2_3gd2v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h073q"]
+atlas = ExtResource("2_3gd2v")
+region = Rect2(0, 0, 16, 16)
+
+[node name="StarsIndicator" type="HBoxContainer"]
+theme_override_constants/separation = 4
+script = ExtResource("1_h16bt")
+
+[node name="A" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_h16bt")
+stretch_mode = 2
+
+[node name="B" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_3gd2v")
+stretch_mode = 2
+
+[node name="C" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_h073q")
+stretch_mode = 2

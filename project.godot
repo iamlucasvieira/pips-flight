@@ -11,18 +11,20 @@ config_version=5
 [application]
 
 config/name="pips-flight"
-run/main_scene="uid://cueh2fgtv8o3q"
+run/main_scene="uid://b0dp53pg8p00k"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://oy43w6uyn7jm"
 
 [autoload]
 
 Game="*res://globals/game.gd"
+Music="*res://scenes/music.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
@@ -30,6 +32,10 @@ window/stretch/scale_mode="integer"
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[global_group]
+
+wind=""
 
 [input]
 

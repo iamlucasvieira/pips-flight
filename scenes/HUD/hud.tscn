@@ -1,20 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c48kkvhnvdntn"]
+[gd_scene load_steps=3 format=3 uid="uid://c48kkvhnvdntn"]
 
 [ext_resource type="Script" uid="uid://papj7q7skifh" path="res://scenes/HUD/jump_indicator.gd" id="1_epp0c"]
-[ext_resource type="Script" uid="uid://b8kdpeawtc06h" path="res://scenes/HUD/stars_indicator.gd" id="2_epp0c"]
-[ext_resource type="Texture2D" uid="uid://de4nu20c1x0hd" path="res://assets/star.png" id="2_jjobl"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dpu10"]
-atlas = ExtResource("2_jjobl")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jjobl"]
-atlas = ExtResource("2_jjobl")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_epp0c"]
-atlas = ExtResource("2_jjobl")
-region = Rect2(0, 0, 16, 16)
+[ext_resource type="PackedScene" uid="uid://cye15g3i0qo4b" path="res://scenes/HUD/stars_indicator.tscn" id="2_glunx"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -38,25 +25,5 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 4
 script = ExtResource("1_epp0c")
 
-[node name="StarsIndicator" type="HBoxContainer" parent="MarginContainer/TopBar"]
+[node name="StarsIndicator" parent="MarginContainer/TopBar" instance=ExtResource("2_glunx")]
 layout_mode = 2
-theme_override_constants/separation = 4
-script = ExtResource("2_epp0c")
-
-[node name="A" type="TextureRect" parent="MarginContainer/TopBar/StarsIndicator"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_dpu10")
-stretch_mode = 2
-
-[node name="B" type="TextureRect" parent="MarginContainer/TopBar/StarsIndicator"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_jjobl")
-stretch_mode = 2
-
-[node name="C" type="TextureRect" parent="MarginContainer/TopBar/StarsIndicator"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = SubResource("AtlasTexture_epp0c")
-stretch_mode = 2

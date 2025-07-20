@@ -16,7 +16,7 @@ turbulence_noise_speed_random = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5a7b"]
 size = Vector2(43, 315)
 
-[node name="GPUParticles2D" type="GPUParticles2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" groups=["wind"]]
 modulate = Color(0, 0.596078, 0.858824, 1)
 amount = 35
 lifetime = 5.0
