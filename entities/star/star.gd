@@ -3,6 +3,8 @@ extends AnimatedSprite2D
 
 @export var star: Game.Star
 @onready var area_2d: Area2D = $Area2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	if Game.is_star_collected(star):
@@ -10,8 +12,7 @@ func _ready():
 
 func collect_star():
 	if Game.collect_star(star):
-		play_collection_effect()
-		queue_free()
+		animation_player.play("collect")
 
 func play_collection_effect():
 	var tween = create_tween()

@@ -18,7 +18,6 @@ config/icon="uid://oy43w6uyn7jm"
 [autoload]
 
 Game="*res://globals/game.gd"
-Music="*res://scenes/music/music.tscn"
 
 [display]
 

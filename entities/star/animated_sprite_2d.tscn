@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmw6e32l5d0um"]
+[gd_scene load_steps=13 format=3 uid="uid://dmw6e32l5d0um"]
 
 [ext_resource type="Texture2D" uid="uid://de4nu20c1x0hd" path="res://assets/star.png" id="1_72qe4"]
 [ext_resource type="Script" uid="uid://dwxlqpqlqqshe" path="res://entities/star/star.gd" id="2_ssp63"]
+[ext_resource type="AudioStream" uid="uid://gds7g6e8nbvc" path="res://sounds/Star.wav" id="3_48myt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6uuj"]
 atlas = ExtResource("1_72qe4")
@@ -51,6 +52,60 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_48myt"]
 radius = 7.0
 
+[sub_resource type="Animation" id="Animation_48myt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ssp63"]
+resource_name = "collect"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.733333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_collection_effect"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c4n6i"]
+_data = {
+&"RESET": SubResource("Animation_48myt"),
+&"collect": SubResource("Animation_ssp63")
+}
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_jw3ls")
 autoplay = "default"
@@ -62,5 +117,13 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_48myt")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_48myt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c4n6i")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
