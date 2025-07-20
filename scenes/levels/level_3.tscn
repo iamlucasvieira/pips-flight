@@ -455,9 +455,6 @@ metadata/_edit_lock_ = true
 [node name="A" parent="Stars" instance=ExtResource("8_n6eey")]
 position = Vector2(2893, 276)
 
-[node name="A2" parent="Stars" instance=ExtResource("8_n6eey")]
-position = Vector2(110, 101)
-
 [node name="B" parent="Stars" instance=ExtResource("8_n6eey")]
 position = Vector2(6424, -377)
 star = 1

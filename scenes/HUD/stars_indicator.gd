@@ -32,5 +32,5 @@ func set_texture_star_collected():
 			texture.region.position.x = 0
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _on_star_collected(_level: Game.Level, star: Game.Star):
+func _on_star_collected(_level: Game.Level, _star: Game.Star):
 	set_texture_star_collected()

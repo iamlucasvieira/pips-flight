@@ -12,7 +12,6 @@ signal entered_wind
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
-@onready var sounds: AnimationPlayer = $Sounds
 
 var POINTING_LEFT: bool = false
 

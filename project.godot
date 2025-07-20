@@ -13,11 +13,15 @@ config_version=5
 config/name="pips-flight"
 run/main_scene="uid://b0dp53pg8p00k"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/image="uid://oy43w6uyn7jm"
 config/icon="uid://oy43w6uyn7jm"
 
 [autoload]
 
 Game="*res://globals/game.gd"
+Music="*res://scenes/music/music.tscn"
 
 [display]
 
